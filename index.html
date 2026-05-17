@@ -431,7 +431,6 @@
                 <h2 style="margin-top: 3rem;">
                     ¿Qué tal te pareció?
                 </h2>
-
                 <div class="rating">
                     <span onclick="rate('💔')">💔 Me dolió</span>
                     <span onclick="rate('🕊️')">🕊️ Me hizo sentir feliz</span>
@@ -440,11 +439,27 @@
                     <span onclick="rate('🖤')">🖤 Me hizo sentir orgulloso</span>
                 </div>
 
-                <textarea placeholder="Si quieres dejar unas palabras..."></textarea>
+                <form action="https://formsubmit.co/nataliacastroospino@gmail.com" method="POST" onsubmit="finishExperience()">
 
-                <button class="button" onclick="finishExperience()">
-                    Enviar respuesta
-                </button>
+                    <!-- CONFIGURACIÓN -->
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <input type="hidden" name="_subject" value="Nueva respuesta de 35 Meses">
+
+                    <input type="hidden" name="_template" value="table">
+
+                    <!-- REACCIÓN -->
+                    <input type="hidden" name="Reacción" id="reactionInput">
+
+                    <!-- MENSAJE -->
+                    <textarea name="Mensaje" placeholder="Si quieres dejar unas palabras..." required>
+                    </textarea>
+
+                    <button class="button" type="submit">
+                        Enviar respuesta
+                    </button>
+
+                </form>
 
                 <p id="thanksMessage" style="margin-top: 2rem;"></p>
 
@@ -476,9 +491,13 @@
         let selectedReaction = "";
 
         function rate(reaction) {
-            selectedReaction = reaction;
-            alert("Seleccionaste: " + reaction);
-        }
+
+                selectedReaction = reaction;
+
+                document.getElementById("reactionInput").value = reaction;
+
+                alert("Seleccionaste: " + reaction);
+            }
 
         // FINAL
         function finishExperience() {
