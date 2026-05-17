@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>35 Meses</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(180deg, #050505 0%, #101010 100%);
+            color: #f2f2f2;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.4), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.5), transparent);
+
+            background-size: 200px 200px;
+            animation: moveStars 30s linear infinite;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        @keyframes moveStars {
+            from {
+                transform: translateY(0px);
+            }
+
+            to {
+                transform: translateY(-200px);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 850px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            animation: fadeUp 1s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1,
+        h2 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            line-height: 1.9;
+            color: #d6d6d6;
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .small {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-top: 1.5rem;
+        }
+
+        .verse {
+            font-style: italic;
+            color: #f5deb3;
+            margin-top: 2rem;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.95rem 2rem;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .memory-box {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .memory {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem;
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            flex-wrap: wrap;
+        }
+
+        .rating span:hover {
+            transform: scale(1.05);
+        }
+
+        textarea {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 16px;
+            border: none;
+            resize: none;
+            min-height: 120px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-family: inherit;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media(max-width: 768px) {
+            .card {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars"></div>
+
+    <!-- CAMBIA musica.mp3 POR TU CANCIÓN -->
+    <audio id="bgMusic" loop>
+        <source src="Be as One.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+
+        <!-- INICIO -->
+        <section>
+            <div class="card hidden">
+
+                <h1>35 Meses</h1>
+
+                <p>
+                    Hice esto porque quiero recordarte lo especial y único que eres...
+                </p>
+
+                <p>
+                    Porque hay personas que merecen detalles hechos con tiempo,
+                    intención y cariño.
+                </p>
+
+                <p>
+                    Y porque contigo, incluso las cosas pequeñas siempre tuvieron
+                    un significado distinto.
+                </p>
+
+                <button class="button" onclick="startExperience('historia')">
+                    🖤 Pincha aquí si quieres continuar
+                </button>
+
+                <p class="small">
+                    Te recomiendo leer esto con música.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- HISTORIA -->
+        <section id="historia">
+            <div class="card hidden">
+
+                <h2>Una historia sobre permanecer</h2>
+
+                <p>
+                    Siempre me gustó la historia de Rut.
+                </p>
+
+                <p>
+                    Porque no habla de un amor perfecto.
+                </p>
+
+                <p>
+                    Habla de alguien que decidió quedarse.
+                    De alguien que eligió permanecer incluso cuando era más fácil irse.
+                </p>
+
+                <p>
+                    Y quizá por eso siempre me pareció una historia tan bonita.
+                </p>
+
+                <p class="verse">
+                    “A donde tú vayas, yo iré.”
+                    <br><br>
+                    — Rut 1:16
+                </p>
+
+                <a href="#mundo" class="button">
+                    ✨ Hay algo más que quiero mostrarte
+                </a>
+
+            </div>
+        </section>
+
+        <!-- MUNDO -->
+        <section id="mundo">
+            <div class="card hidden">
+
+                <h2>Tu mundo</h2>
+
+                <p>
+                    Hay personas que sienten el mundo distinto.
+                </p>
+
+                <p>
+                    Personas que encuentran significado donde otros no lo ven.
+                </p>
+
+                <p>
+                    Y creo que eso siempre hizo especial tu manera de existir.
+                </p>
+
+                <div class="memory-box">
+
+                    <div class="memory">
+                        🖤 Tus gustos únicos.
+                    </div>
+
+                    <div class="memory">
+                        📖 La forma en que hablas de historia y fe.
+                    </div>
+
+                    <div class="memory">
+                        🎮 La pasión con la que explicas lo que amas.
+                    </div>
+
+                    <div class="memory">
+                        🌌 Esa manera tan tuya de sentir el mundo.
+                    </div>
+
+                </div>
+
+                <a href="#gracias" class="button">
+                    🕊️ Sigue leyendo
+                </a>
+
+            </div>
+        </section>
+
+        <!-- GRACIAS -->
+        <section id="gracias">
+            <div class="card hidden">
+
+                <h2>Gracias</h2>
+
+                <p>
+                    Gracias por cada conversación.
+                </p>
+
+                <p>
+                    Por cada momento tranquilo.
+                </p>
+
+                <p>
+                    Por cada detalle.
+                </p>
+
+                <p>
+                    Por las veces que me hiciste sentir única.
+                </p>
+
+                <p>
+                    Por permitirme haber sido la reina de tu mundo.
+                </p>
+
+                <p>
+                    Y gracias también por estos 35 meses.
+                </p>
+
+                <p class="verse">
+                    “El amor sea sin fingimiento.”
+                    <br><br>
+                    — Romanos 12:9
+                </p>
+
+                <a href="#final" class="button">
+                    🤍 Quiero decirte algo más
+                </a>
+
+            </div>
+        </section>
+
+        <!-- FINAL -->
+        <section id="final">
+            <div class="card hidden">
+
+                <h2>Fin del recorrido</h2>
+
+                <p>
+                    Algunas personas llegan a nuestra vida
+                    y dejan una marca distinta.
+                </p>
+
+                <p>
+                    Tú eres una de esas personas para mí.
+                </p>
+
+                <p>
+                    Así que este pequeño espacio
+                    era solo una forma de recordarte
+                    lo especial que eres.
+                </p>
+
+                <p>
+                    Quiero que sepas que hacerte cosas como estas
+                    es la parte más feliz para mí de aprender a programar...
+                    porque me permite demostrarte mi amor de mil maneras...
+
+                    Quiero que disfrutes de esto que cada día aprende tu ternurita,
+                    que le cuesta, pero aprende.
+
+                    Que nada es imposible,
+                    que cuando hay empeño, hay resultado.
+
+                    Que el límite está en la mente,
+                    que se puede lograr todo lo que uno se propone,
+                    que no hay nada que no se pueda lograr.
+                </p>
+
+                <p>
+                    Feliz 35 meses. 🖤
+                </p>
+
+                <h2 style="margin-top: 3rem;">
+                    ¿Qué tal te pareció?
+                </h2>
+
+                <div class="rating">
+                    <span onclick="rate('💔')">💔 Me dolió</span>
+                    <span onclick="rate('🕊️')">🕊️ Me hizo sentir feliz</span>
+                    <span onclick="rate('🤍')">🤍 Me hizo pensar</span>
+                    <span onclick="rate('✨')">✨ Me gustó</span>
+                    <span onclick="rate('🖤')">🖤 Me hizo sentir orgulloso</span>
+                </div>
+
+                <textarea placeholder="Si quieres dejar unas palabras..."></textarea>
+
+                <button class="button" onclick="finishExperience()">
+                    Enviar respuesta
+                </button>
+
+                <p id="thanksMessage" style="margin-top: 2rem;"></p>
+
+            </div>
+        </section>
+
+        <footer>
+            Hecho con cariño.
+        </footer>
+
+    </div>
+
+    <script>
+
+        // MÚSICA
+        const music = document.getElementById('bgMusic');
+
+        function startExperience(sectionId) {
+
+            music.play();
+
+            console.log("La página fue abierta");
+
+            document.getElementById(sectionId)
+                .scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // CALIFICACIÓN
+        let selectedReaction = "";
+
+        function rate(reaction) {
+            selectedReaction = reaction;
+            alert("Seleccionaste: " + reaction);
+        }
+
+        // FINAL
+        function finishExperience() {
+
+            console.log("Terminó de leer todo");
+
+            document.getElementById('thanksMessage').innerHTML =
+                "Gracias por llegar hasta aquí. 🖤";
+        }
+
+        // ANIMACIONES
+        const observer = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('show');
+
+                }
+
+            });
+
+        });
+
+        document.querySelectorAll('.hidden').forEach(el => {
+
+            observer.observe(el);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
