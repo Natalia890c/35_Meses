@@ -439,28 +439,23 @@
                     <span onclick="rate('🖤')">🖤 Me hizo sentir orgulloso</span>
                 </div>
 
-                <form action="https://formsubmit.co/nataliacastroospino@gmail.com" method="POST" onsubmit="finishExperience()">
-
-                    <!-- CONFIGURACIÓN -->
-                    <input type="hidden" name="_captcha" value="false">
-
+                <form action="https://formspree.io/f/mwvzeroo" method="POST" onsubmit="finishExperience(event)">
+                
+                    <!-- ASUNTO -->
                     <input type="hidden" name="_subject" value="Nueva respuesta de 35 Meses">
-
-                    <input type="hidden" name="_template" value="table">
-
+                
                     <!-- REACCIÓN -->
                     <input type="hidden" name="Reacción" id="reactionInput">
-
+                
                     <!-- MENSAJE -->
-                    <textarea name="Mensaje" placeholder="Si quieres dejar unas palabras..." required>
-                    </textarea>
-
+                    <textarea name="Mensaje" placeholder="Si quieres dejar unas palabras..." required></textarea>
+                
                     <button class="button" type="submit">
                         Enviar respuesta
                     </button>
-
+                
                 </form>
-
+                
                 <p id="thanksMessage" style="margin-top: 2rem;"></p>
 
             </div>
@@ -500,12 +495,36 @@
             }
 
         // FINAL
-        function finishExperience() {
+        async function finishExperience(event) {
 
-            console.log("Terminó de leer todo");
+            event.preventDefault();
 
-            document.getElementById('thanksMessage').innerHTML =
-                "Gracias por llegar hasta aquí. 🖤";
+            const form = event.target;
+
+            const data = new FormData(form);
+
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+
+                document.getElementById('thanksMessage').innerHTML =
+                    "Gracias por tu respuesta. 🖤";
+
+                form.reset();
+
+            } else {
+
+                document.getElementById('thanksMessage').innerHTML =
+                    "Hubo un problema al enviar el mensaje.";
+
+            }
+
         }
 
         // ANIMACIONES
